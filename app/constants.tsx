@@ -5,11 +5,11 @@ interface projectsInterface { title: string, description: string, tags: string[]
 const skillSet: skillsetInterface[] = [
   {
     title: 'Frontend',
-    skills: ["React", "Next.js", "TypeScript", "Tailwind CSS"],
+    skills: ["React", "Next.js", "TypeScript", "Svelte", "Ant Design", "SASS/LESS", "Tailwind CSS"],
   },
   {
     title: 'Backend',
-    skills: ["Node.js", "Python", "PostgreSQL", "REST APIs"],
+    skills: ["Node.js", "Express.js", "Python", "PostgreSQL", "GraphQL", "MySQL", "NoSQL", "DynamoDB"],
   },
   {
     title: 'DevOps',
@@ -17,46 +17,52 @@ const skillSet: skillsetInterface[] = [
   },
   {
     title: 'Tools',
-    skills: ["Jest", "Webpack", "Redis", "GraphQL"],
+    skills: ["Webpack", "Redis", "Atlassian Suite", "AEM", "WordPress"],
   }
 ];
 
 const experience: experienceInterface[] = [
   {
-    title: "Senior Fullstack Engineer",
-    company: "Tech Company",
-    period: "2022 - Present",
-    description: "Led development of microservices architecture serving 1M+ users. Improved application performance by 40% through optimization and caching strategies.",
-  },
-  {
-    title: "Fullstack Engineer",
-    company: "Startup Inc",
-    period: "2020 - 2022",
-    description: "Built customer-facing web application from scratch using React and Node.js. Implemented real-time features using WebSockets and Redis.",
+    title: "Software Engineer",
+    company: "Dow Jones",
+    period: "2024 - 2025",
+    description: "Designed and implemented a React-based authoring system that streamlined article publishing via GraphQL into WordPress, reducing editor publishing time. Led development of a custom WYSIWYG editor adopted across WSJ properties, empowering editors with a consistent and scalable publishing experience.",
   },
   {
     title: "Software Engineer",
-    company: "Digital Agency",
-    period: "2019 - 2020",
-    description: "Developed responsive web applications for multiple clients. Collaborated with designers to implement pixel-perfect UIs and smooth user experiences.",
+    company: "Spotify",
+    period: "2023 - 2024",
+    description: "Delivered an external tooling platform in React (MUI + Typescript) with GraphQL + Node backend, enabling non-engineers to set up automated checks and tracks, reducing engineering overhead by 30%. Built a real-time performance dashboard with filtering capabilities, giving teams visibility into track health and adoption.",
+  },
+  {
+    title: "Senior Software Engineer",
+    company: "Buzzfeed",
+    period: "2019 - 2023",
+    description: "Engineered an internal ad automation tool (React, Python, Svelte, Next.js) that published ads to Google Ad Manager, Facebook, Instagram, and BuzzFeed, reaching millions daily. Drove frontend development for BuzzFeed.com updates using React, Next.js, and SASS, while contributing backend updates in Python.",
+  },
+  {
+    title: "Fullstack Engineer",
+    company: "VaynerMedia",
+    period: "2015-2019",
+    description: "Developed websites, custom WordPress modules, and React applications for global clients including Budweiser, Johnnie Walker, and Hulu. Created Facebook Messenger bots (Node + Redis/SQL) and Alexa/Google voice apps (Node + DynamoDB) for Fortune 500 brands, deployed on AWS Lambda + S3.",
   },
 ];
 
 const projects: projectsInterface[] = [
   {
-    title: "E-Commerce Platform",
-    description: "Full-featured online store with payment integration, inventory management, and admin dashboard",
-    tags: ["Next.js", "Stripe", "PostgreSQL"],
+    title: "Dow Jones Publishing Tool",
+    description: "Full-featured CMS for deploying articles across all DJ owned workspaces with real-time tracking and multiple editors interacting with articles.",
+    tags: ["React", "GraphQL", "Node.js", "TypeScript", "WordPress", "AWS"],
   },
   {
-    title: "Real-time Analytics Dashboard",
-    description: "Live data visualization dashboard processing millions of events per day",
-    tags: ["React", "WebSocket", "Redis"],
+    title: "Real-time Performance Dashboard",
+    description: "Live data visualization dashboard for tracking team adoption of certain checks and tracks.",
+    tags: ["MUI", "Typescript", "Node.js", "GraphQL"],
   },
   {
-    title: "Task Management System",
-    description: "Collaborative project management tool with real-time updates and team features",
-    tags: ["TypeScript", "Node.js", "MongoDB"],
+    title: "Ads Deployment Dashboard",
+    description: "Internal CMS for building and deploying ads across BuzzFeed. Showed live view of ads and placement, as well as 1:1 visualization of ads.",
+    tags: ["Next.js", "Node.js", "Python", "React", "Svelte", "SQL"],
   }
 ];
 

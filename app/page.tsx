@@ -31,7 +31,7 @@ export default function Home() {
               Fullstack Engineer
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Building scalable web applications with modern technologies and 7+ years of experience
+              Building scalable web applications with modern technologies and 11+ years of experience
             </p>
             <div className="flex gap-4 justify-center pt-4">
               <a 
@@ -58,7 +58,7 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-4">
               <p className="text-lg text-gray-600 dark:text-gray-300">
-                I'm a passionate fullstack engineer with over 7 years of experience building 
+                I'm a passionate fullstack engineer with over 10+ years of experience building 
                 robust, scalable web applications. My expertise spans modern frontend frameworks, 
                 backend systems, databases, and cloud infrastructure.
               </p>
