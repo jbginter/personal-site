@@ -2,27 +2,13 @@ import ProjectCard from "./components/Cards/ProjectCard";
 import ExperienceCard from "./components/Cards/ExperienceCard";
 import SkillCard from "./components/Cards/SkillCard";
 import { skillSet, experience, projects } from "./constants";
+import { Navigation } from "./components/Navigation/Navigation";
 
 export default function Home() {
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-6 py-4">
-          <div className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-              Jonathan Ginter
-            </h1>
-            <div className="flex gap-6">
-              <a href="#about" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">About</a>
-              <a href="#experience" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Experience</a>
-              <a href="#projects" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Projects</a>
-              <a href="#contact" className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">Contact</a>
-            </div>
-          </div>
-        </div>
-      </nav>
-
+      <Navigation />
       {/* Hero Section */}
       <section className="pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
@@ -31,7 +17,7 @@ export default function Home() {
               Fullstack Engineer
             </h2>
             <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Building scalable web applications with modern technologies and 11+ years of experience
+              Building scalable web applications with modern technologies and 10+ years of experience
             </p>
             <div className="flex gap-4 justify-center pt-4">
               <a 
