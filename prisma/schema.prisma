@@ -1,0 +1,117 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(cuid())
+  username      String    @unique
+  email         String    @unique
+  passwordHash  String
+  role          Role      @default(USER)
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  
+  // Relations
+  createdRooms  Room[]    @relation("RoomCreator")
+  messages      Message[]
+  roomBans      RoomBan[]
+  roomMutes     RoomMute[]
+  roomMembers   RoomMember[]
+
+  @@map("users")
+}
+
+model Room {
+  id          String    @id @default(cuid())
+  name        String
+  description String?
+  isPrivate   Boolean   @default(false)
+  createdById String
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  
+  // Relations
+  createdBy   User      @relation("RoomCreator", fields: [createdById], references: [id], onDelete: Cascade)
+  messages    Message[]
+  bans        RoomBan[]
+  mutes       RoomMute[]
+  members     RoomMember[]
+
+  @@map("rooms")
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  content   String
+  roomId    String
+  userId    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  // Relations
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([roomId])
+  @@index([userId])
+  @@map("messages")
+}
+
+model RoomBan {
+  id        String   @id @default(cuid())
+  roomId    String
+  userId    String
+  bannedAt  DateTime @default(now())
+  reason    String?
+  
+  // Relations
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@map("room_bans")
+}
+
+model RoomMute {
+  id        String   @id @default(cuid())
+  roomId    String
+  userId    String
+  mutedAt   DateTime @default(now())
+  expiresAt DateTime?
+  
+  // Relations
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@map("room_mutes")
+}
+
+model RoomMember {
+  id        String   @id @default(cuid())
+  roomId    String
+  userId    String
+  joinedAt  DateTime @default(now())
+  lastSeen  DateTime @default(now())
+  
+  // Relations
+  room      Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([roomId, userId])
+  @@map("room_members")
+}
+
+enum Role {
+  USER
+  MODERATOR
+  ADMIN
+}

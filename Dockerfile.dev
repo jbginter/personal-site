@@ -1,0 +1,29 @@
+# Development Dockerfile with Hot Reloading
+FROM node:18-alpine
+
+# Install dependencies for native modules
+RUN apk add --no-cache libc6-compat python3 make g++ openssl
+
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+COPY prisma ./prisma/
+
+# Install all dependencies (including dev dependencies)
+RUN npm install
+
+# Generate Prisma Client
+RUN npx prisma generate
+
+# Copy all source files
+COPY . .
+
+# Expose port 3000 for Next.js
+EXPOSE 3000
+
+# Expose port 5555 for Prisma Studio (if needed)
+EXPOSE 5555
+
+# Default command (can be overridden in docker-compose)
+CMD ["npm", "run", "dev"]
