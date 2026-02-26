@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "node server.js",
     "build": "next build",
-    "start": "NODE_ENV=development node server.js",
-    "start_prod": "NODE_ENV=production node server.js",
+    "start": "next start",
+    "prod": "NODE_ENV=production npm run build && npm run start",
     "lint": "next lint"
   },
   "dependencies": {
