@@ -35,3 +35,12 @@ next-env.d.ts
 #local info
 DOCKER_GUIDE.md
 Dockerfile_info
+
+# OpenNext
+.open-next
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
