@@ -55,7 +55,7 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {
-                skillSet.map((value, index) => <SkillCard key={`${value.title}-${index}`} title={value.title} skills={value.skills} />)
+                skillSet.map((value, index) => <SkillCard key={`${value.title}-${index}`} {...value} />)
               }
             </div>
           </div>
@@ -68,7 +68,7 @@ export default function Home() {
           <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">Experience</h3>
           <div className="space-y-8">
             {
-              experience.map((value, index) => <ExperienceCard key={`${value.title}-${index}`} title={value.title} company={value.company} period={value.period} description={value.description} />)
+              experience.map((value, index) => <ExperienceCard key={`${value.title}-${index}`} {...value} />)
             }
           </div>
         </div>
@@ -80,7 +80,7 @@ export default function Home() {
           <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">Featured Projects</h3>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {
-              projects.map((value, index) => <ProjectCard key={`${value.title}-${index}`} title={value.title} description={value.description} tags={value.tags} />)
+              projects.map((value, index) => <ProjectCard key={`${value.title}-${index}`} {...value} />)
             }
           </div>
         </div>
@@ -94,13 +94,13 @@ export default function Home() {
             I'm always interested in hearing about new opportunities and exciting projects.
           </p>
           <div className="flex gap-6 justify-center">
-            <a href="mailto:jbginter88@gmail.com" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <a href="mailto:jbginter88@gmail.com" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-white transition-all">
               jbginter88@gmail.com
             </a>
-            <a href="https://github.com/jbginter" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <a href="https://github.com/jbginter" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-white transition-all">
               GitHub
             </a>
-            <a href="https://www.linkedin.com/in/jonathan-ginter-bb1b007a/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:underline">
+            <a href="https://www.linkedin.com/in/jonathan-ginter-bb1b007a/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-white transition-all">
               LinkedIn
             </a>
           </div>

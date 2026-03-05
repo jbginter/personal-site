@@ -1,6 +1,6 @@
 "use client";
 import { MouseEvent, useState } from "react";
-import { navLinks } from "../../constants";
+import { navLinks } from "@/app/constants";
 
 const HeaderLogo = () => {
 
@@ -14,9 +14,14 @@ const HeaderLogo = () => {
     };
 
     return (
-        <h1 onClick={handleLogoClick} className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent cursor-pointer">
-            Jonathan Ginter
-        </h1>
+        <div onClick={handleLogoClick} className="relative group cursor-pointer">
+            <span className="text-2xl font-bold absolute bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                Jonathan Ginter
+            </span>
+            <span className="text-2xl font-bold relative bg-gradient-to-r from-purple-600 to-red-600 bg-clip-text text-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 ">
+                Jonathan Ginter
+            </span>
+        </div>
     );
 };
 

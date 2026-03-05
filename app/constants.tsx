@@ -1,5 +1,5 @@
 interface skillsetInterface { title: string, skills: string[] };
-interface experienceInterface { title: string, company: string, period: string, description: string };
+interface experienceInterface { title: string, company: string, site: string, period: string, description: string };
 interface projectsInterface { title: string, description: string, tags: string[] };
 
 const skillSet: skillsetInterface[] = [
@@ -25,24 +25,28 @@ const experience: experienceInterface[] = [
   {
     title: "Software Engineer",
     company: "Dow Jones",
+    site: "https://www.dowjones.com/",
     period: "2024 - 2025",
     description: "Designed and implemented a React-based authoring system that streamlined article publishing via GraphQL into WordPress, reducing editor publishing time. Led development of a custom WYSIWYG editor adopted across WSJ properties, empowering editors with a consistent and scalable publishing experience.",
   },
   {
     title: "Software Engineer",
     company: "Spotify",
+    site: "https://open.spotify.com/",
     period: "2023 - 2024",
     description: "Delivered an external tooling platform in React (MUI + Typescript) with GraphQL + Node backend, enabling non-engineers to set up automated checks and tracks, reducing engineering overhead by 30%. Built a real-time performance dashboard with filtering capabilities, giving teams visibility into track health and adoption.",
   },
   {
     title: "Senior Software Engineer",
     company: "Buzzfeed",
+    site: "https://www.buzzfeed.com/",
     period: "2019 - 2023",
     description: "Engineered an internal ad automation tool (React, Python, Svelte, Next.js) that published ads to Google Ad Manager, Facebook, Instagram, and BuzzFeed, reaching millions daily. Drove frontend development for BuzzFeed.com updates using React, Next.js, and SASS, while contributing backend updates in Python.",
   },
   {
     title: "Fullstack Engineer",
     company: "VaynerMedia",
+    site: "https://vaynermedia.com/",
     period: "2015-2019",
     description: "Developed websites, custom WordPress modules, and React applications for global clients including Budweiser, Johnnie Walker, and Hulu. Created Facebook Messenger bots (Node + Redis/SQL) and Alexa/Google voice apps (Node + DynamoDB) for Fortune 500 brands, deployed on AWS Lambda + S3.",
   },

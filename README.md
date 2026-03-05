@@ -28,29 +28,41 @@ A modern, responsive portfolio website built with Next.js 15, TypeScript, and Ta
 
 ### Installation
 
-1. Clone or download this repository
+- Clone or download this repository
 
-2. Install dependencies:
+#### With Docker
+
+```bash
+docker compose up --build
+# with a Docker dev specific file
+docker compose -f docker-compose.dev.yml up
+```
+
+#### Without Docker
+
+1. Install dependencies:
 ```bash
 npm install
 # or
 yarn install
 ```
 
-3. Run the development server:
+2. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) in your browser
+3. Open [http://localhost:3000](http://localhost:3000) in your browser
 
 ## Project Structure
 
 ```
 portfolio-site/
 ├── app/
+├── ├── components/      # React components to built/used throughout site
+├── ├── constants.tsx.   # Constant values and Typescript interfaces/types 
 │   ├── globals.css      # Global styles and Tailwind directives
 │   ├── layout.tsx       # Root layout with metadata
 │   └── page.tsx         # Main portfolio page
@@ -66,6 +78,8 @@ portfolio-site/
 ```bash
 npm run build
 npm run start
+# or with Docker
+docker compose up --build
 ```
 
 ## Deployment
