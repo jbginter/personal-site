@@ -1,6 +1,7 @@
 "use client";
 import { MouseEvent, useState } from "react";
 import { navLinks } from "@/app/constants";
+import { useTheme } from "@/app/context/ThemeContext";
 
 const HeaderLogo = () => {
 
@@ -103,13 +104,26 @@ const HeaderNavigation = () => {
     );
 };
 
+const ThemeToggle = () => {
+    const { toggleTheme } = useTheme();
+    return (
+        <button className="win98-theme-btn" onClick={toggleTheme} title="Switch to Windows 98 theme">
+            <span>🖥️</span>
+            <span>Win98</span>
+        </button>
+    );
+};
+
 const Navigation = () => {
     return (
         <nav className="fixed top-0 w-full bg-white/80 dark:bg-gray-900/80 backdrop-blur-md z-50 border-b border-gray-200 dark:border-gray-800">
             <div className="max-w-6xl mx-auto px-6 py-4">
                 <div className="flex justify-between items-center">
                     <HeaderLogo />
-                    <HeaderNavigation />
+                    <div className="flex items-center gap-4">
+                        <HeaderNavigation />
+                        <ThemeToggle />
+                    </div>
                 </div>
             </div>
         </nav>
