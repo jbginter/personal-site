@@ -107,7 +107,7 @@ const HeaderNavigation = () => {
 const ThemeToggle = () => {
     const { toggleTheme } = useTheme();
     return (
-        <button className="win98-theme-btn" onClick={toggleTheme} title="Switch to Windows 98 theme">
+        <button className="win98-theme-btn hidden md:flex" onClick={toggleTheme} title="Switch to Windows 98 theme">
             <span>🖥️</span>
             <span>Win98</span>
         </button>

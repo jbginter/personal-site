@@ -29,6 +29,9 @@ export default function Win98Window({
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const [dragging, setDragging] = useState(false);
   const dragOffset = useRef({ x: 0, y: 0 });
+  const titleBarRef = useRef<HTMLDivElement>(null);
+
+  // ── Mouse drag ────────────────────────────────────────────────────────────
 
   const handleTitleMouseDown = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -57,14 +60,58 @@ export default function Win98Window({
     };
   }, [dragging]);
 
+  // ── Touch drag ────────────────────────────────────────────────────────────
+  // Must be added manually with passive:false so we can call preventDefault
+  // and prevent the page from scrolling while dragging a window.
+
+  useEffect(() => {
+    const el = titleBarRef.current;
+    if (!el) return;
+
+    // Keep a stable pos ref so the move handler always has the latest offset
+    const posRef = { x: initialX, y: initialY };
+
+    const onTouchStartStable = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      dragOffset.current = { x: touch.clientX - posRef.x, y: touch.clientY - posRef.y };
+      onFocus?.();
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const next = {
+        x: Math.max(0, touch.clientX - dragOffset.current.x),
+        y: Math.max(0, touch.clientY - dragOffset.current.y),
+      };
+      posRef.x = next.x;
+      posRef.y = next.y;
+      setPos(next);
+    };
+
+    el.addEventListener("touchstart", onTouchStartStable, { passive: true });
+    el.addEventListener("touchmove", onTouchMove, { passive: false });
+
+    return () => {
+      el.removeEventListener("touchstart", onTouchStartStable);
+      el.removeEventListener("touchmove", onTouchMove);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div
       style={{ left: pos.x, top: pos.y, width, zIndex, position: "fixed" }}
       className="win98-window"
       onMouseDown={() => onFocus?.()}
+      onTouchStart={() => onFocus?.()}
     >
       {/* Title Bar */}
-      <div className="win98-titlebar" onMouseDown={handleTitleMouseDown}>
+      <div
+        ref={titleBarRef}
+        className="win98-titlebar"
+        onMouseDown={handleTitleMouseDown}
+      >
         <div className="win98-titlebar-text">
           <span>{icon}</span>
           <span>{title}</span>

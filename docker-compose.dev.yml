@@ -5,12 +5,15 @@ services:
   app:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.dev
     ports:
       - "3000:3000"
     environment:
       - NODE_ENV=development
-      - WATCHPACK_POLLING=true  # Enable polling for file changes in Docker
+      - WATCHPACK_POLLING=true      # Enable polling for file changes in Docker
+      - CHOKIDAR_USEPOLLING=true    # Fallback polling for chokidar-based watchers
+    stdin_open: true
+    tty: true
     volumes:
       # Mount source code for hot reloading
       - ./app:/app/app
