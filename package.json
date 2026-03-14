@@ -9,7 +9,8 @@
     "prod": "NODE_ENV=production npm run build && npm run start",
     "lint": "next lint",
     "build:cf": "npx @opennextjs/cloudflare build",
-    "deploy:cf": "npm run build:cf && npx wrangler versions upload"
+    "deploy:cf": "npx wrangler deploy",
+    "upload:cf": "npm run build:cf && npx wrangler versions upload"
   },
   "dependencies": {
     "next": "^15.5.12",
