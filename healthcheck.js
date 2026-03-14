@@ -4,7 +4,7 @@ const options = {
   host: 'localhost',
   port: 3000,
   timeout: 2000,
-  path: '/api/health'
+  path: '/'
 };
 
 const healthCheck = http.request(options, (res) => {
