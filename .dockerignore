@@ -1,6 +1,7 @@
 node_modules
 .next
 .worker-next
+.open-next
 .git
 .gitignore
 *.md

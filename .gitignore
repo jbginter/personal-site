@@ -38,3 +38,4 @@ Dockerfile_info
 
 # cloudflare workers build output
 /.worker-next
+/.open-next
