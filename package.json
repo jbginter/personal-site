@@ -7,7 +7,9 @@
     "build": "next build",
     "start": "next start",
     "prod": "NODE_ENV=production npm run build && npm run start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "build:cf": "npx @opennextjs/cloudflare build",
+    "deploy:cf": "npm run build:cf && npx wrangler versions upload"
   },
   "dependencies": {
     "next": "^15.5.12",
@@ -15,6 +17,7 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.17.1",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

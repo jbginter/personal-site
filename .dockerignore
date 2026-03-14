@@ -1,5 +1,6 @@
 node_modules
 .next
+.worker-next
 .git
 .gitignore
 *.md
