@@ -35,3 +35,7 @@ next-env.d.ts
 #local info
 DOCKER_GUIDE.md
 Dockerfile_info
+
+# cloudflare workers build output
+/.worker-next
+/.open-next

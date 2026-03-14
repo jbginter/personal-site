@@ -1,10 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  output: 'standalone', // Required for Docker deployment
-  
-  // Production optimizations
-  compress: true, // Enable gzip compression
+  // standalone is only needed for Docker; Vercel handles its own output format
+  ...(process.env.DOCKER_BUILD === 'true' && { output: 'standalone' }),
+
   poweredByHeader: false, // Remove X-Powered-By header for security
   
   // Image optimization
@@ -47,7 +46,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=31536000, imutable',
+            value: 'public, max-age=31536000, immutable',
           },
         ]
       }
