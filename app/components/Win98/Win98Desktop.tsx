@@ -4,30 +4,8 @@ import Win98Window from "./Win98Window";
 import Win98Icon from "./Win98Icon";
 import Win98Taskbar from "./Win98Taskbar";
 import { skillSet, experience, projects } from "@/app/constants";
-
-type WindowId = "about" | "projects" | "experience" | "skills" | "contact";
-
-interface WindowState {
-  open: boolean;
-  minimized: boolean;
-  zIndex: number;
-}
-
-const WINDOW_CONFIG: Record<WindowId, { title: string; icon: string; initialX: number; initialY: number; width: number }> = {
-  about:      { title: "About Me",        icon: "🖥️", initialX: 120, initialY: 40,  width: 480 },
-  projects:   { title: "My Projects",     icon: "📁", initialX: 160, initialY: 60,  width: 560 },
-  experience: { title: "Work Experience", icon: "💼", initialX: 200, initialY: 80,  width: 620 },
-  skills:     { title: "Skills",          icon: "⚙️", initialX: 240, initialY: 100, width: 500 },
-  contact:    { title: "Contact Info",    icon: "📧", initialX: 280, initialY: 120, width: 420 },
-};
-
-const DESKTOP_ICONS: { id: WindowId; icon: string; label: string }[] = [
-  { id: "about",      icon: "🖥️", label: "My Portfolio" },
-  { id: "projects",   icon: "📁", label: "My Projects"  },
-  { id: "experience", icon: "💼", label: "Experience"   },
-  { id: "skills",     icon: "⚙️", label: "Skills"       },
-  { id: "contact",    icon: "📧", label: "Contact"      },
-];
+import { DESKTOP_ICONS, WINDOW_CONFIG, INITIAL_WINDOWS } from "./constants";
+import type { WindowId, WindowState } from "./constants";
 
 // ─── Window Content Components ────────────────────────────────────────────────
 
@@ -180,14 +158,6 @@ function ContactContent() {
 }
 
 // ─── Main Desktop ─────────────────────────────────────────────────────────────
-
-const INITIAL_WINDOWS: Record<WindowId, WindowState> = {
-  about:      { open: false, minimized: false, zIndex: 10 },
-  projects:   { open: false, minimized: false, zIndex: 10 },
-  experience: { open: false, minimized: false, zIndex: 10 },
-  skills:     { open: false, minimized: false, zIndex: 10 },
-  contact:    { open: false, minimized: false, zIndex: 10 },
-};
 
 export default function Win98Desktop() {
   const [windows, setWindows] = useState<Record<WindowId, WindowState>>(INITIAL_WINDOWS);

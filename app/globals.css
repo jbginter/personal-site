@@ -191,6 +191,7 @@ body {
   overflow: auto;
   max-height: calc(70vh - 80px);
   background: #c0c0c0;
+  margin-bottom: 25.5px;
 }
 
 /* Status Bar */
@@ -201,6 +202,9 @@ body {
   display: flex;
   gap: 4px;
   font-size: 11px;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
 }
 
 .win98-statusbar-pane {

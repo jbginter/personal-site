@@ -1,11 +1,6 @@
 "use client";
 import { useRef } from "react";
-
-interface Win98IconProps {
-  icon: string;
-  label: string;
-  onClick: () => void;
-}
+import type { Win98IconProps } from "./constants";
 
 export default function Win98Icon({ icon, label, onClick }: Win98IconProps) {
   const lastTap = useRef<number>(0);

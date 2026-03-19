@@ -1,32 +1,21 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/app/context/ThemeContext";
-
-export interface TaskbarWindow {
-  id: string;
-  title: string;
-  icon: string;
-  isMinimized: boolean;
-}
-
-interface Win98TaskbarProps {
-  windows: TaskbarWindow[];
-  onWindowClick: (id: string) => void;
-  activeWindowId?: string;
-}
+import type { Win98TaskbarProps } from "./constants";
 
 export default function Win98Taskbar({ windows, onWindowClick, activeWindowId }: Win98TaskbarProps) {
   const { toggleTheme } = useTheme();
-  const [time, setTime] = useState("");
+  const [now, setNow] = useState(() => new Date());
 
   useEffect(() => {
-    const update = () => {
-      setTime(new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" }));
-    };
-    update();
-    const interval = setInterval(update, 1000);
+    const interval = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const h = now.getHours() % 12 || 12;
+  const m = now.getMinutes().toString().padStart(2, "0");
+  const ampm = now.getHours() >= 12 ? "PM" : "AM";
+  const time = `${h}${now.getSeconds() % 2 === 0 ? ":" : " "}${m} ${ampm}`;
 
   return (
     <div className="win98-taskbar">
@@ -48,7 +37,9 @@ export default function Win98Taskbar({ windows, onWindowClick, activeWindowId }:
         </button>
       ))}
 
-      <div className="win98-clock">{time}</div>
+      <div className="win98-clock">
+        {time}
+      </div>
     </div>
   );
 }

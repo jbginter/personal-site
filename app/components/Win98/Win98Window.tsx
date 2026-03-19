@@ -1,18 +1,8 @@
 "use client";
-import { useState, useRef, useEffect, ReactNode } from "react";
+import { useState, useRef, useEffect } from "react";
+import type { Win98WindowProps } from "./constants";
 
-interface Win98WindowProps {
-  title: string;
-  icon?: string;
-  onClose: () => void;
-  onMinimize: () => void;
-  children: ReactNode;
-  initialX?: number;
-  initialY?: number;
-  width?: number;
-  zIndex?: number;
-  onFocus?: () => void;
-}
+const TASKBAR_HEIGHT = 30;
 
 export default function Win98Window({
   title,
@@ -28,12 +18,30 @@ export default function Win98Window({
 }: Win98WindowProps) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const [dragging, setDragging] = useState(false);
+  const [maximized, setMaximized] = useState(false);
   const dragOffset = useRef({ x: 0, y: 0 });
   const titleBarRef = useRef<HTMLDivElement>(null);
+  const preMaxPos = useRef({ x: initialX, y: initialY });
+  const maximizedRef = useRef(false);
+
+  const handleMaximizeClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (maximized) {
+      setPos(preMaxPos.current);
+      setMaximized(false);
+      maximizedRef.current = false;
+    } else {
+      preMaxPos.current = { ...pos };
+      setPos({ x: 0, y: 0 });
+      setMaximized(true);
+      maximizedRef.current = true;
+    }
+  };
 
   // ── Mouse drag ────────────────────────────────────────────────────────────
 
   const handleTitleMouseDown = (e: React.MouseEvent) => {
+    if (maximized) return;
     e.preventDefault();
     setDragging(true);
     dragOffset.current = { x: e.clientX - pos.x, y: e.clientY - pos.y };
@@ -68,16 +76,17 @@ export default function Win98Window({
     const el = titleBarRef.current;
     if (!el) return;
 
-    // Keep a stable pos ref so the move handler always has the latest offset
     const posRef = { x: initialX, y: initialY };
 
     const onTouchStartStable = (e: TouchEvent) => {
+      if (maximizedRef.current) return;
       const touch = e.touches[0];
       dragOffset.current = { x: touch.clientX - posRef.x, y: touch.clientY - posRef.y };
       onFocus?.();
     };
 
     const onTouchMove = (e: TouchEvent) => {
+      if (maximizedRef.current) return;
       e.preventDefault();
       const touch = e.touches[0];
       const next = {
@@ -99,9 +108,13 @@ export default function Win98Window({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const windowStyle = maximized
+    ? { left: 0, top: 0, width: "100vw", height: `calc(100vh - ${TASKBAR_HEIGHT}px)`, zIndex, position: "fixed" as const }
+    : { left: pos.x, top: pos.y, width, zIndex, position: "fixed" as const };
+
   return (
     <div
-      style={{ left: pos.x, top: pos.y, width, zIndex, position: "fixed" }}
+      style={windowStyle}
       className="win98-window"
       onMouseDown={() => onFocus?.()}
       onTouchStart={() => onFocus?.()}
@@ -124,7 +137,13 @@ export default function Win98Window({
           >
             _
           </button>
-          <button className="win98-btn win98-btn-sm" title="Maximize">□</button>
+          <button
+            className="win98-btn win98-btn-sm"
+            onClick={handleMaximizeClick}
+            title={maximized ? "Restore" : "Maximize"}
+          >
+            {maximized ? "❐" : "□"}
+          </button>
           <button
             className="win98-btn win98-btn-sm"
             onClick={(e) => { e.stopPropagation(); onClose(); }}
