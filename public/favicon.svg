@@ -1,41 +1,36 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Background gradient -->
   <defs>
-    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#2563eb;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:1" />
-    </linearGradient>
     <linearGradient id="symbolGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#e0e7ff;stop-opacity:1" />
+      <stop offset="0%" style="stop-color:#f5f5f5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#d4d4d4;stop-opacity:1" />
     </linearGradient>
   </defs>
-  
-  <!-- Rounded square background -->
-  <rect width="512" height="512" rx="110" fill="url(#bgGradient)"/>
-  
+
+  <!-- Dark background -->
+  <rect width="512" height="512" rx="110" fill="#111111"/>
+
   <!-- Code bracket symbol (left) -->
-  <path d="M 180 160 L 120 256 L 180 352" 
-        stroke="url(#symbolGradient)" 
-        stroke-width="32" 
-        stroke-linecap="round" 
-        stroke-linejoin="round" 
+  <path d="M 180 160 L 120 256 L 180 352"
+        stroke="url(#symbolGradient)"
+        stroke-width="32"
+        stroke-linecap="round"
+        stroke-linejoin="round"
         fill="none"/>
-  
+
   <!-- Code bracket symbol (right) -->
-  <path d="M 332 160 L 392 256 L 332 352" 
-        stroke="url(#symbolGradient)" 
-        stroke-width="32" 
-        stroke-linecap="round" 
-        stroke-linejoin="round" 
+  <path d="M 332 160 L 392 256 L 332 352"
+        stroke="url(#symbolGradient)"
+        stroke-width="32"
+        stroke-linecap="round"
+        stroke-linejoin="round"
         fill="none"/>
-  
+
   <!-- Forward slash in middle -->
-  <line x1="280" y1="140" x2="232" y2="372" 
-        stroke="url(#symbolGradient)" 
-        stroke-width="28" 
+  <line x1="280" y1="140" x2="232" y2="372"
+        stroke="url(#symbolGradient)"
+        stroke-width="28"
         stroke-linecap="round"/>
-  
-  <!-- Small dot accent (top right) -->
-  <circle cx="420" cy="92" r="24" fill="#60a5fa" opacity="0.8"/>
+
+  <!-- Amber dot accent (top right) -->
+  <circle cx="420" cy="92" r="24" fill="#f59e0b"/>
 </svg>
