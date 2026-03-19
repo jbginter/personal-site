@@ -20,7 +20,9 @@ services:
       - ./public:/app/public
       - ./next.config.js:/app/next.config.js
       - ./tailwind.config.ts:/app/tailwind.config.ts
+      - ./postcss.config.js:/app/postcss.config.js
       - ./tsconfig.json:/app/tsconfig.json
+      - ./server.js:/app/server.js
       # Exclude node_modules and .next from being mounted
       - /app/node_modules
       - /app/.next

@@ -7,6 +7,15 @@ import { Navigation } from "./components/Navigation/Navigation";
 import Win98Desktop from "./components/Win98/Win98Desktop";
 import { useTheme } from "./context/ThemeContext";
 
+const SectionNumber = ({ n }: { n: string }) => (
+  <span
+    className="text-5xl font-bold leading-none"
+    style={{ color: "var(--accent)", fontFamily: "var(--font-space-mono)" }}
+  >
+    {n}
+  </span>
+);
+
 export default function Home() {
   const { theme } = useTheme();
 
@@ -15,104 +24,147 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <div className="min-h-screen" style={{ background: "var(--background)", color: "var(--foreground)" }}>
       <Navigation />
-      {/* Hero Section */}
-      <section className="pt-32 pb-20 px-6">
+
+      {/* Hero */}
+      <section className="pt-40 pb-24 px-6 md:px-12">
         <div className="max-w-6xl mx-auto">
-          <div className="text-center space-y-6">
-            <h2 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white">
-              Fullstack Engineer
-            </h2>
-            <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-              Building scalable web applications with modern technologies and 10+ years of experience
+          <p
+            className="text-xs tracking-[0.25em] uppercase mb-8"
+            style={{ color: "var(--accent)", fontFamily: "var(--font-space-mono)" }}
+          >
+            Available for new projects
+          </p>
+          <h1 className="text-7xl md:text-[10rem] font-bold leading-none uppercase tracking-tight mb-12">
+            <span className="block">Fullstack</span>
+            <span className="block" style={{ color: "var(--accent)" }}>Engineer</span>
+          </h1>
+          <div className="flex flex-col md:flex-row gap-8 md:items-end justify-between border-t pt-10" style={{ borderColor: "var(--border)" }}>
+            <p className="text-lg max-w-md leading-relaxed" style={{ color: "var(--muted)" }}>
+              10+ years building scalable web applications, APIs, and cloud infrastructure.
             </p>
-            <div className="flex gap-4 justify-center pt-4">
+            <div className="flex gap-3">
               <a
                 href="#projects"
-                className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium"
+                className="px-6 py-3 text-sm font-bold uppercase tracking-widest transition-opacity hover:opacity-80"
+                style={{ background: "var(--accent)", color: "#111111", fontFamily: "var(--font-space-mono)" }}
               >
-                View Projects
+                View Work
               </a>
               <a
                 href="#contact"
-                className="px-8 py-3 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg hover:border-blue-600 dark:hover:border-blue-400 transition-colors font-medium"
+                className="px-6 py-3 text-sm font-bold uppercase tracking-widest border transition-colors border-zinc-800 text-zinc-100 hover:border-amber-500 hover:text-amber-400"
+                style={{ fontFamily: "var(--font-space-mono)" }}
               >
-                Get in Touch
+                Contact
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-white dark:bg-gray-800">
+      {/* About / Skills */}
+      <section id="about" className="py-24 px-6 md:px-12 border-t" style={{ borderColor: "var(--border)" }}>
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">About Me</h3>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-4">
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                I&apos;m a passionate fullstack engineer with over 10+ years of experience building
-                robust, scalable web applications. My expertise spans modern frontend frameworks,
-                backend systems, databases, and cloud infrastructure.
+          <div className="flex gap-5 items-baseline mb-16">
+            <SectionNumber n="01" />
+            <h2 className="text-3xl font-bold uppercase tracking-tight">About</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-16 items-start">
+            <div className="space-y-5">
+              <p className="text-lg leading-relaxed" style={{ color: "var(--muted)" }}>
+                I&apos;m a fullstack engineer with 10+ years of experience building robust, scalable
+                web applications. My expertise spans modern frontend frameworks, backend systems,
+                databases, and cloud infrastructure.
               </p>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
+              <p className="text-lg leading-relaxed" style={{ color: "var(--muted)" }}>
                 I thrive on solving complex problems and transforming ideas into elegant,
-                user-friendly solutions that drive business value.
+                user-friendly solutions that drive real business value.
               </p>
             </div>
-            <div className="grid grid-cols-2 gap-4">
-              {skillSet.map((value, index) => <SkillCard key={`${value.title}-${index}`} {...value} />)}
+            <div className="grid grid-cols-2 gap-3">
+              {skillSet.map((value, index) => (
+                <SkillCard key={`${value.title}-${index}`} {...value} />
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-6">
+      {/* Experience */}
+      <section id="experience" className="py-24 px-6 md:px-12 border-t" style={{ borderColor: "var(--border)" }}>
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">Experience</h3>
-          <div className="space-y-8">
-            {experience.map((value, index) => <ExperienceCard key={`${value.title}-${index}`} {...value} />)}
+          <div className="flex gap-5 items-baseline mb-16">
+            <SectionNumber n="02" />
+            <h2 className="text-3xl font-bold uppercase tracking-tight">Experience</h2>
+          </div>
+          <div className="space-y-4">
+            {experience.map((value, index) => (
+              <ExperienceCard key={`${value.title}-${index}`} {...value} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 bg-white dark:bg-gray-800">
+      {/* Projects */}
+      <section id="projects" className="py-24 px-6 md:px-12 border-t" style={{ borderColor: "var(--border)" }}>
         <div className="max-w-6xl mx-auto">
-          <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-12 text-center">Featured Projects</h3>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((value, index) => <ProjectCard key={`${value.title}-${index}`} {...value} />)}
+          <div className="flex gap-5 items-baseline mb-16">
+            <SectionNumber n="03" />
+            <h2 className="text-3xl font-bold uppercase tracking-tight">Projects</h2>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {projects.map((value, index) => (
+              <ProjectCard key={`${value.title}-${index}`} {...value} />
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-6">
-        <div className="max-w-2xl mx-auto text-center">
-          <h3 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">Let&apos;s Work Together</h3>
-          <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-            I&apos;m always interested in hearing about new opportunities and exciting projects.
-          </p>
-          <div className="flex gap-6 justify-center">
-            <a href="mailto:jbginter88@gmail.com" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-white transition-all">
-              jbginter88@gmail.com
-            </a>
-            <a href="https://github.com/jbginter" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-white transition-all">
-              GitHub
-            </a>
-            <a href="https://www.linkedin.com/in/jonathan-ginter-bb1b007a/" target="_blank" className="text-blue-600 dark:text-blue-400 hover:text-white transition-all">
-              LinkedIn
-            </a>
+      {/* Contact */}
+      <section id="contact" className="py-24 px-6 md:px-12 border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-6xl mx-auto">
+          <div className="flex gap-5 items-baseline mb-16">
+            <SectionNumber n="04" />
+            <h2 className="text-3xl font-bold uppercase tracking-tight">Contact</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-16">
+            <p className="text-xl leading-relaxed" style={{ color: "var(--muted)" }}>
+              Available for new opportunities and exciting projects.
+              Let&apos;s build something great together.
+            </p>
+            <div className="flex flex-col">
+              {[
+                { label: "jbginter88@gmail.com", href: "mailto:jbginter88@gmail.com" },
+                { label: "GitHub", href: "https://github.com/jbginter" },
+                { label: "LinkedIn", href: "https://www.linkedin.com/in/jonathan-ginter-bb1b007a/" },
+              ].map(({ label, href }) => (
+                <a
+                  key={href}
+                  href={href}
+                  target="_blank"
+                  className="flex items-center justify-between border-b py-5 transition-colors group hover:text-amber-400"
+                  style={{ borderColor: "var(--border)", color: "var(--foreground)" }}
+                >
+                  <span>{label}</span>
+                  <span style={{ color: "var(--accent)" }} className="group-hover:translate-x-1 transition-transform">→</span>
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="py-8 px-6 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="max-w-6xl mx-auto text-center text-gray-600 dark:text-gray-400">
-          <p>Building content for the web since 2013</p>
+      <footer className="py-8 px-6 md:px-12 border-t" style={{ borderColor: "var(--border)" }}>
+        <div className="max-w-6xl mx-auto justify-between items-center md:flex">
+          <p style={{ color: "var(--muted)", fontFamily: "var(--font-space-mono)", fontSize: "0.7rem" }}>
+            Building for the web since 2013
+          </p>
+          <p style={{ color: "var(--muted)", fontFamily: "var(--font-space-mono)", fontSize: "0.7rem" }}>
+            © 2025 Jonathan Ginter
+          </p>
         </div>
       </footer>
     </div>

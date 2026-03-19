@@ -2,15 +2,30 @@ import type { experienceInterface } from "@/app/constants";
 
 export default function ExperienceCard({ title, company, site, period, description }: experienceInterface) {
   return (
-    <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700">
-      <div className="flex justify-between items-start mb-4 items-center">
+    <div
+      className="p-6 border-l-2 pl-8"
+      style={{ borderLeftColor: "var(--accent)", background: "var(--card-bg)" }}
+    >
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-1 mb-3">
         <div>
-          <h4 className="text-2xl font-bold text-gray-900 dark:text-white">{title}</h4>
-          <a href={site} target="_blank" className="text-lg text-blue-600 dark:text-blue-400 hover:text-white transition-all">{company}</a>
+          <h4 className="text-xl font-bold" style={{ color: "var(--foreground)" }}>{title}</h4>
+          <a
+            href={site}
+            target="_blank"
+            className="text-sm transition-opacity hover:opacity-70"
+            style={{ color: "var(--accent)" }}
+          >
+            {company}
+          </a>
         </div>
-        <span className="text-gray-500 dark:text-gray-400 whitespace-nowrap">{period}</span>
+        <span
+          className="text-xs uppercase tracking-wider whitespace-nowrap mt-1"
+          style={{ color: "var(--muted)", fontFamily: "var(--font-space-mono)" }}
+        >
+          {period}
+        </span>
       </div>
-      <p className="text-gray-600 dark:text-gray-300">{description}</p>
+      <p className="text-sm leading-relaxed" style={{ color: "var(--muted)" }}>{description}</p>
     </div>
   );
 }
