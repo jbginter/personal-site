@@ -28,6 +28,7 @@ interface WindowState {
 }
 
 interface Win98WindowProps {
+  id: string;
   title: string;
   icon?: string;
   onClose: () => void;
@@ -38,6 +39,7 @@ interface Win98WindowProps {
   width?: number;
   zIndex?: number;
   onFocus?: () => void;
+  activeWindowId?: string;
 }
 
 const WINDOW_CONFIG: Record<WindowId, { title: string; icon: string; initialX: number; initialY: number; width: number }> = {

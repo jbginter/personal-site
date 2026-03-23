@@ -5,6 +5,7 @@ import type { Win98WindowProps } from "./constants";
 const TASKBAR_HEIGHT = 30;
 
 export default function Win98Window({
+  id,
   title,
   icon = "💾",
   onClose,
@@ -15,6 +16,7 @@ export default function Win98Window({
   width = 520,
   zIndex = 10,
   onFocus,
+  activeWindowId,
 }: Win98WindowProps) {
   const [pos, setPos] = useState({ x: initialX, y: initialY });
   const [dragging, setDragging] = useState(false);
@@ -122,7 +124,7 @@ export default function Win98Window({
       {/* Title Bar */}
       <div
         ref={titleBarRef}
-        className="win98-titlebar"
+        className={`win98-titlebar ${activeWindowId === id ? "active" : ""}`}
         onMouseDown={handleTitleMouseDown}
       >
         <div className="win98-titlebar-text">

@@ -163,7 +163,7 @@ export default function Home() {
             Building for the web since 2013
           </p>
           <p style={{ color: "var(--muted)", fontFamily: "var(--font-space-mono)", fontSize: "0.7rem" }}>
-            © 2025 Jonathan Ginter
+            © {new Date().getFullYear()} Jonathan Ginter
           </p>
         </div>
       </footer>

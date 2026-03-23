@@ -31,7 +31,7 @@ function AboutContent() {
         </p>
       </div>
       <div style={{ display: "flex", gap: 4, flexWrap: "wrap" }}>
-        {["10+ Years Experience", "Fullstack", "React", "Node.js", "AWS"].map(t => (
+        {["10+ Years Experience", "Fullstack", "React", "Next.js", "AWS"].map(t => (
           <span key={t} className="win98-tag">{t}</span>
         ))}
       </div>
@@ -42,11 +42,6 @@ function AboutContent() {
 function ProjectsContent() {
   return (
     <div>
-      <div className="win98-field" style={{ marginBottom: 6, padding: "2px 6px", display: "flex", gap: 16 }}>
-        <span style={{ fontWeight: "bold", flex: 2 }}>Name</span>
-        <span style={{ fontWeight: "bold", flex: 3 }}>Description</span>
-        <span style={{ fontWeight: "bold", flex: 2 }}>Technologies</span>
-      </div>
       {projects.map((p, i) => (
         <div key={i} className="win98-list-item" style={{ flexDirection: "column", gap: 6 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
@@ -231,6 +226,7 @@ export default function Win98Desktop() {
         return (
           <Win98Window
             key={id}
+            id={id}
             title={cfg.title}
             icon={cfg.icon}
             initialX={cfg.initialX}
@@ -240,6 +236,7 @@ export default function Win98Desktop() {
             onClose={() => closeWindow(id)}
             onMinimize={() => minimizeWindow(id)}
             onFocus={() => bringToFront(id)}
+            activeWindowId={activeId ?? undefined}
           >
             {id === "about"      && <AboutContent />}
             {id === "projects"   && <ProjectsContent />}
