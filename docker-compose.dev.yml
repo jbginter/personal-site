@@ -1,7 +1,7 @@
 # Next.js Development Server with Hot Reload
 version: '3.8'
 
-services: 
+services:
   app:
     build:
       context: .
@@ -12,11 +12,18 @@ services:
       - NODE_ENV=development
       - WATCHPACK_POLLING=true      # Enable polling for file changes in Docker
       - CHOKIDAR_USEPOLLING=true    # Fallback polling for chokidar-based watchers
+      - DATABASE_URL=postgresql://postgres:postgres@postgres:5432/chatroom
+      - JWT_SECRET=dev-secret-change-in-production
     stdin_open: true
     tty: true
+    depends_on:
+      postgres:
+        condition: service_healthy
     volumes:
       # Mount source code for hot reloading
       - ./app:/app/app
+      - ./lib:/app/lib
+      - ./scripts:/app/scripts
       - ./public:/app/public
       - ./next.config.js:/app/next.config.js
       - ./tailwind.config.ts:/app/tailwind.config.ts
@@ -33,3 +40,23 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      - POSTGRES_DB=chatroom
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./scripts/db/init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data:
